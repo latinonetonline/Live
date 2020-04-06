@@ -99,11 +99,17 @@ iframe {
 
 .container-inner {
   margin-top: 90px;
+  height: calc(100% - 90px);
 }
 .col {
   width: 100%;
-  height: 500;
+  height: 100%;
 }
+
+.row {
+  height: 100%;
+}
+
 .hide {
   display: none;
 }
