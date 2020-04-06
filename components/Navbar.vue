@@ -2,8 +2,8 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-            <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px"/>
+      <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
+      <a class="navbar-brand" href="#">ML.NET</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -44,9 +44,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
-  padding-top: 56px;
+  padding-top: 90px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
