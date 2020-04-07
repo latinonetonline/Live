@@ -5,7 +5,7 @@
       <div v-bind:class="{ 'row': !fullScreen}">
         <div
           id="col-iframe-mixer"
-          v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-9': !fullScreen}"
+          v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-10': !fullScreen}"
         >
           <iframe
             id="frm-mixer"
@@ -13,7 +13,7 @@
             src="https://mixer.com/embed/player/latinonetonline?hideChannel=true&muted=false"
           ></iframe>
         </div>
-        <div v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-3': !fullScreen}">
+        <div v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-2': !fullScreen}">
           <iframe
             v-bind:class="{'hide': fullScreen}"
             src="https://mixer.com/embed/chat/latinonetonline"
@@ -27,6 +27,8 @@
 <script>
 import Navbar from "./Navbar.vue";
 import Mixer from "./Mixer.vue";
+
+
 export default {
   name: "Main",
   components: {
@@ -76,7 +78,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;

@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
-      <a class="navbar-brand" href="#">ML.NET</a>
+      <a class="navbar-brand" href="#">{{title}}</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -40,7 +40,17 @@
 
 <script>
 export default {
-  name: "navbar"
+  name: "navbar",
+  created: function() {
+    fetch("https://mixer.com/api/v1/channels/latinonetonline?fields=name")
+      .then(json => json.json())
+      .then(data => (this.title = data.name));
+  },
+  data: function() {
+    return {
+      title: ""
+    };
+  }
 };
 </script>
 
