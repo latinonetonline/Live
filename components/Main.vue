@@ -28,7 +28,6 @@
 import Navbar from "./Navbar.vue";
 import Mixer from "./Mixer.vue";
 
-
 export default {
   name: "Main",
   components: {

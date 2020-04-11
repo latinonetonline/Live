@@ -41,7 +41,7 @@ module.exports = {
         new HTMLWebpackPlugin({
             showErrors: true,
             cache: true,
-            title: 'Vue with Webpack',
+            title: 'Latino .NET Online - Live',
             favicon: join(__dirname, 'logo.png'),
             template: join(__dirname, 'index.html')
         })

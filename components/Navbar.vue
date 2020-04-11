@@ -2,37 +2,9 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
-      <a class="navbar-brand" href="#">{{title}}</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
+      <div class="row">
+        <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
+        <h3 class="navbar-brand">{{title}}</h3>
       </div>
     </div>
   </nav>
@@ -65,5 +37,9 @@ h1 {
 }
 nav {
   background: #5c2d91 !important;
+}
+h3.navbar-brand {
+  margin-left: 6vw;
+  padding-top: 1.1rem;
 }
 </style>
