@@ -2,11 +2,30 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <div class="row">
+     
         <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
         <h3 class="navbar-brand">{{title}}</h3>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_blank">
+                <font-awesome-icon icon="home" />
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
   </nav>
 </template>
 
@@ -41,5 +60,8 @@ nav {
 h3.navbar-brand {
   margin-left: 6vw;
   padding-top: 1.1rem;
+}
+.nav-link {
+  font-size: x-large;
 }
 </style>
