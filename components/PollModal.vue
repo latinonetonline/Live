@@ -8,22 +8,34 @@
       </div>
       <div class="row">
         <div class="col col-lg-12">
-          <a href="#" class="square_btn">{{poll.Options.Option1.Text}}</a>
+          <button
+            v-on:click="vote(poll.Options.Option1.OptionId)"
+            class="square_btn text-left"
+          >{{poll.Options.Option1.Text}}</button>
         </div>
       </div>
       <div class="row">
         <div class="col col-lg-12">
-          <a href="#" class="square_btn">{{poll.Options.Option2.Text}}</a>
+          <button
+            v-on:click="vote(poll.Options.Option2.OptionId)"
+            class="square_btn text-left"
+          >{{poll.Options.Option2.Text}}</button>
         </div>
       </div>
       <div class="row">
         <div class="col col-lg-12">
-          <a href="#" class="square_btn">{{poll.Options.Option3.Text}}</a>
+          <button
+            v-on:click="vote(poll.Options.Option3.OptionId)"
+            class="square_btn text-left"
+          >{{poll.Options.Option3.Text}}</button>
         </div>
       </div>
       <div class="row">
         <div class="col col-lg-12">
-          <a href="#" class="square_btn">{{poll.Options.Option4.Text}}</a>
+          <button
+            v-on:click="vote(poll.Options.Option4.OptionId)"
+            class="square_btn text-left"
+          >{{poll.Options.Option4.Text}}</button>
         </div>
       </div>
     </div>
@@ -32,6 +44,8 @@
 
 <script>
 import { db } from "../firebase";
+import { config } from "../config";
+
 export default {
   name: "pollmodal",
   data() {
@@ -49,6 +63,11 @@ export default {
   methods: {
     show() {
       this.$modal.show("hello-world");
+    },
+    vote(optionId) {
+      fetch(config.api + "/api/polls/vote/" + optionId, {
+        method: "PATCH"
+      });
     }
   },
   firebase: {
