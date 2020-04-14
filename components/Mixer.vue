@@ -1,5 +1,5 @@
 <template>
-  <div id="col-iframe-mixer" v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-10': !fullScreen}">
+  <div id="col-iframe-mixer" v-bind:class="{ 'col-xs-12 col-lg-9': !fullScreen}">
     <iframe
       id="frm-mixer"
       allowfullscreen

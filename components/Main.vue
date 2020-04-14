@@ -5,7 +5,7 @@
       <div v-bind:class="{ 'row': !fullScreen}">
         <mixer @fullscreen="changeFullScreen($event)"></mixer>
         <pollmodal />
-        <div v-bind:class="{ 'col col-xs-12 col-sm-12 col-lg-2': !fullScreen}">
+        <div v-bind:class="{ 'col-xs-12 col-lg-3': !fullScreen}">
           <iframe
             v-bind:class="{'hide': fullScreen}"
             src="https://mixer.com/embed/chat/latinonetonline"
@@ -66,13 +66,11 @@ iframe {
   margin-top: 90px;
   height: calc(100% - 90px);
 }
-.col {
-  width: 100%;
-  height: 100%;
-}
 
 .row {
   height: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .hide {

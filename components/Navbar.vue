@@ -5,7 +5,7 @@
      
         <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
         <h3 class="navbar-brand">{{title}}</h3>
-        <button
+        <!-- <button
           class="navbar-toggler"
           type="button"
           data-toggle="collapse"
@@ -15,7 +15,7 @@
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
