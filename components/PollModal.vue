@@ -1,5 +1,5 @@
 <template>
-  <modal name="hello-world">
+  <modal name="hello-world" :height="330">
     <div class="container">
       <div class="row title">
         <div class="col col-lg-12">
@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col col-lg-12">
           <button
-            v-on:click="vote(poll.Options.Option1.OptionId)"
+            @click="vote(poll.Options.Option1.OptionId)"
             class="square_btn text-left"
           >{{poll.Options.Option1.Text}}</button>
         </div>
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col col-lg-12">
           <button
-            v-on:click="vote(poll.Options.Option2.OptionId)"
+            @click="vote(poll.Options.Option2.OptionId)"
             class="square_btn text-left"
           >{{poll.Options.Option2.Text}}</button>
         </div>
@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col col-lg-12">
           <button
-            v-on:click="vote(poll.Options.Option3.OptionId)"
+            @click="vote(poll.Options.Option3.OptionId)"
             class="square_btn text-left"
           >{{poll.Options.Option3.Text}}</button>
         </div>
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col col-lg-12">
           <button
-            v-on:click="vote(poll.Options.Option4.OptionId)"
+            @click="vote(poll.Options.Option4.OptionId)"
             class="square_btn text-left"
           >{{poll.Options.Option4.Text}}</button>
         </div>
@@ -68,6 +68,7 @@ export default {
       fetch(config.api + "/api/polls/vote/" + optionId, {
         method: "PATCH"
       });
+      this.$modal.hide('hello-world');
     }
   },
   firebase: {
@@ -75,6 +76,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .v--modal-overlay {
