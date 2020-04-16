@@ -1,5 +1,5 @@
 <template>
-  <modal name="hello-world" :height="330">
+  <modal name="hello-world" :height="330" :adaptive="true">
     <div class="container">
       <div class="row title">
         <div class="col col-lg-12">
