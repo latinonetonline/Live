@@ -1,35 +1,56 @@
 <template>
-  <!-- Navigation -->
-  <div class="container-inner">
-    <div class="row">
-      <div id="col-iframe-mixer" class="col col-xs-12 col-sm-12 col-lg-9">
-        <!-- https://davidwalsh.name/iframe-contentwindow-null -->
-        <iframe
-          id="frm-mixer"
-          allowfullscreen
-          src="https://mixer.com/embed/player/latinonetonline?hideChannel=true&muted=false"
-        ></iframe>
-      </div>
-      <div class="col col-xs-12 col-sm-12 col-lg-3">
-        <iframe src="https://mixer.com/embed/chat/latinonetonline"></iframe>
-      </div>
-    </div>
+  <div id="col-iframe-mixer" v-bind:class="{ 'col-xs-12 col-lg-9': !fullScreen}">
+    <iframe
+      id="frm-mixer"
+      allowfullscreen
+      src="https://mixer.com/embed/player/latinonetonline?hideChannel=true&muted=false"
+    ></iframe>
   </div>
 </template>
 
 <script>
-import Navbar from "./Navbar.vue";
 export default {
-  name: "mixer"
+  name: "mixer",
+  data() {
+    return {
+      fullScreen: false
+    };
+  },
+  created() {
+    window.addEventListener("fullscreenchange", this.changeHandler, false);
+    window.addEventListener(
+      "webkitfullscreenchange",
+      this.changeHandler,
+      false
+    );
+    window.addEventListener("mozfullscreenchange", this.changeHandler, false);
+  },
+  updated: function() {
+    this.$nextTick(function() {
+      if (this.fullScreen) {
+        var elem = document.getElementById("col-iframe-mixer");
+        elem.webkitRequestFullscreen();
+      }
+    });
+  },
+  methods: {
+    changeHandler(event) {
+      if (document.fullscreenElement) {
+        if (event.target.id == "frm-mixer") {
+          this.fullScreen = !this.fullScreen;
+          this.$emit("fullscreen", this.fullScreen);
+          document.exitFullscreen();
+        }
+      }
+    }
+  },
+  beforeDestroy() {
+    window.removeEventListener("fullscreenchange", this.changeHandler);
+    window.removeEventListener("webkitfullscreenchange", this.changeHandler);
+    window.removeEventListener("mozfullscreenchange", this.changeHandler);
+  }
 };
 </script>
 
 <style scoped>
-.container-inner {
-  margin-top: 90px;
-}
-.col {
-  width: 100%;
-  height: 500;
-}
 </style>
