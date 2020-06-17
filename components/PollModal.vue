@@ -65,7 +65,7 @@ export default {
       this.$modal.show("hello-world");
     },
     vote(optionId) {
-      fetch(config.api + "/api/polls/vote/" + optionId, {
+      fetch(config.api + "/api/v1/polls/vote/" + optionId, {
         method: "PATCH"
       });
       this.$modal.hide('hello-world');
