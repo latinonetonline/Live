@@ -76,4 +76,8 @@ iframe {
 .hide {
   display: none;
 }
+
+div.v--modal-box.v--modal {
+  height: auto !important;
+}
 </style>
