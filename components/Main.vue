@@ -3,7 +3,16 @@
     <navbar v-if="!fullScreen"></navbar>
     <div v-bind:class="{ 'container-inner': !fullScreen}">
       <div v-bind:class="{ 'row': !fullScreen}">
-        <mixer @fullscreen="changeFullScreen($event)"></mixer>
+        <mixer v-if="mixerChannel.online" @fullscreen="changeFullScreen($event)"></mixer>
+        <eventflyer v-else>
+          <img
+            :src="event.ImageUrl"
+            width="auto"
+            height="auto"
+            class="img-responsive"
+            style="text-align: center;display: inline-block;"
+          />
+        </eventflyer>
         <pollmodal />
         <div v-bind:class="{ 'col-xs-12 col-lg-3': !fullScreen}">
           <iframe
@@ -20,23 +29,40 @@
 import Navbar from "./Navbar.vue";
 import Mixer from "./Mixer.vue";
 import PollModal from "./PollModal.vue";
+import EventFlyer from "./EventFlyer.vue";
 
 export default {
   name: "Main",
   components: {
     navbar: Navbar,
     mixer: Mixer,
-    pollmodal: PollModal
+    pollmodal: PollModal,
+    eventflyer: EventFlyer
   },
   data() {
     return {
-      fullScreen: false
+      fullScreen: false,
+      event: {},
+      mixerChannel: {},
+      timer: ""
     };
+  },
+  created() {
+    this.fetchMixerChannel();
+    this.timer = setInterval(this.fetchMixerChannel, 500);
   },
   methods: {
     changeFullScreen(isFullScreen) {
       this.fullScreen = isFullScreen;
+    },
+    fetchMixerChannel() {
+      fetch("https://mixer.com/api/v1/channels/latinonetonline")
+        .then(json => json.json())
+        .then(mixerChannel => (this.mixerChannel = mixerChannel));
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
   }
 };
 </script>
