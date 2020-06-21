@@ -2,19 +2,18 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-     
-        <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
-        <h3 class="navbar-brand d-none d-md-block">{{title}}</h3>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_blank">
-                <font-awesome-icon icon="home" />
-              </a>
-            </li>
-          </ul>
-        </div>
+      <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
+      <h3 class="navbar-brand d-none d-md-block">{{title}}</h3>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/" target="_blank">
+              <font-awesome-icon icon="home" />
+            </a>
+          </li>
+        </ul>
       </div>
+    </div>
   </nav>
 </template>
 
@@ -22,9 +21,15 @@
 export default {
   name: "navbar",
   created: function() {
-    fetch("https://mixer.com/api/v1/channels/latinonetonline?fields=name")
+    fetch(
+      "https://raw.githubusercontent.com/latinonetonline/eventsdb/master/events/NextEvent"
+    )
       .then(json => json.json())
-      .then(data => (this.title = data.name));
+      .then(event => {
+        let date = new Date(event.Date)
+        let titleDate = `${date.getDate()}/${date.getMonth()}`
+        this.title = `Latino .NET Online ${date.getDate()}/${date.getMonth()}: ${event.Title}`;
+      });
   },
   data: function() {
     return {
