@@ -27,8 +27,8 @@ export default {
       .then(json => json.json())
       .then(event => {
         let date = new Date(event.Date)
-        let titleDate = `${date.getDate()}/${date.getMonth()}`
-        this.title = `Latino .NET Online ${date.getDate()}/${date.getMonth()}: ${event.Title}`;
+        let titleDate = `${date.getDate()}/${date.getMonth() + 1}`
+        this.title = `Latino .NET Online ${titleDate}: ${event.Title}`;
       });
   },
   data: function() {
