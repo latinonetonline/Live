@@ -3,8 +3,8 @@
     <navbar v-if="!fullScreen"></navbar>
     <div v-bind:class="{ 'container-inner': !fullScreen}">
       <div v-bind:class="{ 'row': !fullScreen}">
-        <mixer v-if="mixerChannel.online" @fullscreen="changeFullScreen($event)"></mixer>
-        <eventflyer v-else>
+        <twitch @fullscreen="changeFullScreen($event)"></twitch>
+        <!-- <eventflyer v-else>
           <img
             :src="event.ImageUrl"
             width="auto"
@@ -12,12 +12,16 @@
             class="img-responsive"
             style="text-align: center;display: inline-block;"
           />
-        </eventflyer>
+        </eventflyer>-->
         <pollmodal />
         <div v-bind:class="{ 'col-xs-12 col-lg-3': !fullScreen}">
           <iframe
-            v-bind:class="{'hide': fullScreen}"
-            src="https://mixer.com/embed/chat/latinonetonline"
+            frameborder="0"
+            scrolling="yes"
+            id="chat_embed"
+            src="https://www.twitch.tv/embed/latinonetonline/chat?parent=latinonet.online"
+            height="500"
+            width="350"
           ></iframe>
         </div>
       </div>
@@ -27,7 +31,7 @@
 
 <script>
 import Navbar from "./Navbar.vue";
-import Mixer from "./Mixer.vue";
+import Twitch from "./Twitch.vue";
 import PollModal from "./PollModal.vue";
 import EventFlyer from "./EventFlyer.vue";
 
@@ -35,35 +39,25 @@ export default {
   name: "Main",
   components: {
     navbar: Navbar,
-    mixer: Mixer,
+    twitch: Twitch,
     pollmodal: PollModal,
-    eventflyer: EventFlyer
+    eventflyer: EventFlyer,
   },
   data() {
     return {
       fullScreen: false,
       event: {},
-      mixerChannel: {},
-      timer: ""
     };
   },
-  created() {
-    this.fetchMixerChannel();
-    this.timer = setInterval(this.fetchMixerChannel, 500);
-  },
+  created() {},
   methods: {
     changeFullScreen(isFullScreen) {
       this.fullScreen = isFullScreen;
-    },
-    fetchMixerChannel() {
-      fetch("https://mixer.com/api/v1/channels/latinonetonline")
-        .then(json => json.json())
-        .then(mixerChannel => (this.mixerChannel = mixerChannel));
     }
   },
   beforeDestroy() {
     clearInterval(this.timer);
-  }
+  },
 };
 </script>
 
