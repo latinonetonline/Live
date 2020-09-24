@@ -1,9 +1,12 @@
 <template>
   <div>
     <navbar v-if="!fullScreen"></navbar>
-    <div v-bind:class="{ 'container-inner': !fullScreen}">
-      <div v-bind:class="{ 'row': !fullScreen}">
-        <twitch @fullscreen="changeFullScreen($event)"></twitch>
+    <div v-bind:class="{ 'container-inner': !fullScreen }">
+      <div v-bind:class="{ row: !fullScreen }">
+        <youtube
+          @fullscreen="changeFullScreen($event)"
+          v-bind:youtubeId="youtubeId"
+        ></youtube>
         <!-- <eventflyer v-else>
           <img
             :src="event.ImageUrl"
@@ -14,12 +17,14 @@
           />
         </eventflyer>-->
         <pollmodal />
-        <div v-bind:class="{ 'col-xs-12 col-lg-3': !fullScreen}">
+        <div v-bind:class="{ 'col-xs-12 col-lg-3': !fullScreen }">
           <iframe
             frameborder="0"
             scrolling="yes"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
             id="chat_embed"
-            src="https://www.twitch.tv/embed/latinonetonline/chat?parent=latinonet.online"
+            :src="`https://www.youtube.com/live_chat?v=${this.youtubeId}&embed_domain=latinonet.online`"
             height="500"
             width="350"
           ></iframe>
@@ -31,7 +36,7 @@
 
 <script>
 import Navbar from "./Navbar.vue";
-import Twitch from "./Twitch.vue";
+import Youtube from "./Youtube.vue";
 import PollModal from "./PollModal.vue";
 import EventFlyer from "./EventFlyer.vue";
 
@@ -39,21 +44,35 @@ export default {
   name: "Main",
   components: {
     navbar: Navbar,
-    twitch: Twitch,
+    youtube: Youtube,
     pollmodal: PollModal,
     eventflyer: EventFlyer,
   },
   data() {
     return {
       fullScreen: false,
+      youtubeId: "",
+      iframeChatUrl: "",
       event: {},
     };
   },
-  created() {},
+  created() {
+    fetch(
+      "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCIn0D2WXX9aoglkgHmde-yw&api_key=hfii0d4syu8xqnomg2qjcsrc2u1dsccqrdox0ecb&order_by=pubDate&order_dir=desc&count=15"
+    )
+      .then((data) => data.json())
+      .then((res) => {
+        let video = res.items.filter(function (e) {
+          return e.title.includes("Latino .NET Online");
+        })[0];
+
+        this.youtubeId = video.guid.split(":")[2];
+      });
+  },
   methods: {
     changeFullScreen(isFullScreen) {
       this.fullScreen = isFullScreen;
-    }
+    },
   },
   beforeDestroy() {
     clearInterval(this.timer);
