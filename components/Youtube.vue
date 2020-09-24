@@ -1,40 +1,32 @@
 <template>
-  <div id="col-iframe-twitch" v-bind:class="{ 'col-xs-12 col-lg-9': !fullScreen}">
-    <div id="twitch-embed"></div>
+  <div
+    id="col-iframe-youtube"
+    v-bind:class="{ 'col-xs-12 col-lg-9': !fullScreen }"
+  >
+    <iframe
+      allow="autoplay; encrypted-media"
+      frameborder="0"
+      allowfullscreen
+      :src="`https://www.youtube.com/embed/${this.youtubeId}?autoplay=1&mute=1`"
+    >
+    </iframe>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
-import LoadScript from "vue-plugin-load-script";
-
-Vue.use(LoadScript);
 
 export default {
-  name: "Twitch",
+  name: "Youtube",
+  props: ["youtubeId"],
   data() {
     return {
       fullScreen: false,
+      youtubeId: "",
+      iframeUrl: "",
     };
   },
   created() {
-    Vue.loadScript("https://player.twitch.tv/js/embed/v1.js").then(() => {
-      var embed = new window.Twitch.Embed("twitch-embed", {
-        width: 854,
-        height: 480,
-        channel: "latinonetonline",
-        layout: "video",
-        autoplay: true,
-        // only needed if your site is also embedded on embed.example.com and othersite.example.com
-        parent: ["latinonet.online", "localhost"],
-      });
-
-      embed.addEventListener(window.Twitch.Embed.VIDEO_READY, () => {
-        var player = embed.getPlayer();
-        player.play();
-      });
-    });
-
     window.addEventListener("fullscreenchange", this.changeHandler, false);
     window.addEventListener(
       "webkitfullscreenchange",
@@ -46,7 +38,7 @@ export default {
   updated: function () {
     this.$nextTick(function () {
       if (this.fullScreen) {
-        var elem = document.getElementById("col-iframe-twitch");
+        var elem = document.getElementById("col-iframe-youtube");
         elem.webkitRequestFullscreen();
       }
     });
@@ -54,7 +46,7 @@ export default {
   methods: {
     changeHandler(event) {
       if (document.fullscreenElement) {
-        if (event.target.id == "frm-twitch") {
+        if (event.target.id == "frm-youtube") {
           this.fullScreen = !this.fullScreen;
           this.$emit("fullscreen", this.fullScreen);
           document.exitFullscreen();
