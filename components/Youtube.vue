@@ -7,7 +7,7 @@
       allow="autoplay; encrypted-media"
       frameborder="0"
       allowfullscreen
-      :src="`https://www.youtube.com/embed/${this.youtubeId}?autoplay=1&mute=1`"
+      src="https://www.youtube.com/embed/wcVrXGlxZxA?autoplay=1&mute=1"
     >
     </iframe>
   </div>
@@ -21,9 +21,7 @@ export default {
   props: ["youtubeId"],
   data() {
     return {
-      fullScreen: false,
-      youtubeId: "",
-      iframeUrl: "",
+      fullScreen: false
     };
   },
   created() {
