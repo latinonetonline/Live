@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <img src="https://latinonet.online/assets/img/latinonet/Logo%20Hexagono.png" width="61px" />
-      <h3 class="navbar-brand d-none d-md-block">.NET Conf Latinoamérica 2020 - Día 1</h3>
+      <h3 class="navbar-brand d-none d-md-block">{{title}}</h3>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -20,17 +20,17 @@
 <script>
 export default {
   name: "navbar",
-  // created: function() {
-  //   fetch(
-  //     "https://raw.githubusercontent.com/latinonetonline/eventsdb/master/events/NextEvent"
-  //   )
-  //     .then(json => json.json())
-  //     .then(event => {
-  //       let date = new Date(event.Date)
-  //       let titleDate = `${date.getDate()}/${date.getMonth() + 1}`
-  //       this.title = `Latino .NET Online ${titleDate}: ${event.Title}`;
-  //     });
-  // },
+  created: function() {
+    fetch(
+      "https://raw.githubusercontent.com/latinonetonline/eventsdb/master/events/NextEvent"
+    )
+      .then(json => json.json())
+      .then(event => {
+        let date = new Date(event.Date)
+        let titleDate = `${date.getDate()}/${date.getMonth() + 1}`
+        this.title = `Latino .NET Online ${titleDate}: ${event.Title}`;
+      });
+  },
   data: function() {
     return {
       title: ""
